@@ -177,18 +177,17 @@ public class Main extends javax.swing.JFrame {
 
 
     Login loginPage = new Login();
-
-         /*
+         
     // current JFrame to be invisible 
     this.setVisible(false);
-        */
-    
+        
     // Set the new Login JFrame to be visible
     loginPage.setVisible(true);
 
+    /*
     // Optionally dispose of the current JFrame if you don't want to return to it
     this.dispose();
-
+*/
 
     }//GEN-LAST:event_login_btn1ActionPerformed
 
