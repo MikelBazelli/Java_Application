@@ -1,3 +1,9 @@
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javafx.scene.control.DatePicker;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,81 +32,138 @@ public class UserHomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        tasks = new javax.swing.JButton();
+        report = new javax.swing.JButton();
+        contact = new javax.swing.JButton();
+        calendar = new javax.swing.JLabel();
+        background_img = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
+        home = new javax.swing.JMenu();
+        menu = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        logout = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 900));
+        setTitle("HOME");
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
-        jButton2.setText("TASKS - PROJECTS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        tasks.setBackground(new java.awt.Color(0, 0, 0));
+        tasks.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
+        tasks.setText("TASKS - PROJECTS");
+        tasks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                tasksActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(90, 170, 270, 120);
+        getContentPane().add(tasks);
+        tasks.setBounds(90, 170, 270, 120);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
-        jButton3.setText("VIEW REPORT");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        report.setBackground(new java.awt.Color(0, 0, 0));
+        report.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
+        report.setText("VIEW REPORT");
+        report.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                reportActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(90, 390, 270, 120);
+        getContentPane().add(report);
+        report.setBounds(90, 390, 270, 120);
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
-        jButton4.setText("CONTACT");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        contact.setBackground(new java.awt.Color(0, 0, 0));
+        contact.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
+        contact.setText("CONTACT");
+        contact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                contactActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(90, 610, 270, 120);
+        getContentPane().add(contact);
+        contact.setBounds(90, 610, 270, 120);
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img4.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-80, 50, 1680, 810);
+        calendar.setBackground(new java.awt.Color(255, 255, 255));
+        calendar.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 1, 24)); // NOI18N
+        calendar.setEnabled(false);
+        calendar.setOpaque(true);
+        getContentPane().add(calendar);
+        calendar.setBounds(1040, 210, 240, 140);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+        calendar.setText(LocalDateTime.now().format(formatter));
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        background_img.setBackground(new java.awt.Color(0, 0, 0));
+        background_img.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        background_img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img4.png"))); // NOI18N
+        background_img.setText("jLabel1");
+        background_img.setToolTipText("");
+        getContentPane().add(background_img);
+        background_img.setBounds(-110, -10, 1590, 840);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        menuBar.setForeground(new java.awt.Color(245, 219, 165));
+        menuBar.setToolTipText("");
+        menuBar.setFont(new java.awt.Font("Verdana Pro Cond Black", 0, 20)); // NOI18N
+        menuBar.setPreferredSize(new java.awt.Dimension(65, 50));
 
-        setJMenuBar(jMenuBar1);
+        home.setText("MENU");
+        home.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 26)); // NOI18N
+
+        menu.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        menu.setText("HOME");
+        home.add(menu);
+        home.add(jSeparator1);
+
+        logout.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        logout.setText("LOGOUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        home.add(logout);
+
+        menuBar.add(home);
+
+        jMenu1.setText("                                                                                                                                                                              ");
+        jMenu1.setEnabled(false);
+        menuBar.add(jMenu1);
+
+        jMenu3.setText("SKY CODE");
+        jMenu3.setFont(new java.awt.Font("Verdana Pro Semibold", 0, 48)); // NOI18N
+        menuBar.add(jMenu3);
+
+        setJMenuBar(menuBar);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
+       
+          Tasks tasks = new Tasks();
+          
+          this.setVisible(false);
+          tasks.setVisible(true);
+        
+    }//GEN-LAST:event_tasksActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_reportActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        
+        Main main = new Main();
+        
+        main.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_contactActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,12 +201,17 @@ public class UserHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel background_img;
+    private javax.swing.JLabel calendar;
+    private javax.swing.JButton contact;
+    private javax.swing.JMenu home;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem logout;
+    private javax.swing.JMenuItem menu;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JButton report;
+    private javax.swing.JButton tasks;
     // End of variables declaration//GEN-END:variables
 }
