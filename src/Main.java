@@ -170,11 +170,10 @@ public class Main extends javax.swing.JFrame {
 
     private void contact_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contact_btnActionPerformed
 
-        Contact contactpage = new Contact();
+    Help help = new Help();
 
-        contactpage.setVisible(true);
-        
-        this.setVisible(false);
+    help.setVisible(true);
+    this.setVisible(false);
 
 
 

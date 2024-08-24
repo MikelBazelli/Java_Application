@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javafx.scene.control.DatePicker;
+import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,8 +39,8 @@ public class UserHomePage extends javax.swing.JFrame {
         calendar = new javax.swing.JLabel();
         background_img = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        home = new javax.swing.JMenu();
-        menu = new javax.swing.JMenuItem();
+        menu = new javax.swing.JMenu();
+        home = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         logout = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -53,6 +54,7 @@ public class UserHomePage extends javax.swing.JFrame {
 
         tasks.setBackground(new java.awt.Color(0, 0, 0));
         tasks.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
+        tasks.setForeground(new java.awt.Color(255, 255, 255));
         tasks.setText("TASKS - PROJECTS");
         tasks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +66,7 @@ public class UserHomePage extends javax.swing.JFrame {
 
         report.setBackground(new java.awt.Color(0, 0, 0));
         report.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
+        report.setForeground(new java.awt.Color(255, 255, 255));
         report.setText("VIEW REPORT");
         report.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +78,8 @@ public class UserHomePage extends javax.swing.JFrame {
 
         contact.setBackground(new java.awt.Color(0, 0, 0));
         contact.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
-        contact.setText("CONTACT");
+        contact.setForeground(new java.awt.Color(255, 255, 255));
+        contact.setText("HELP");
         contact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactActionPerformed(evt);
@@ -84,14 +88,20 @@ public class UserHomePage extends javax.swing.JFrame {
         getContentPane().add(contact);
         contact.setBounds(90, 610, 270, 120);
 
-        calendar.setBackground(new java.awt.Color(255, 255, 255));
+        calendar.setBackground(new java.awt.Color(51, 51, 51));
         calendar.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 1, 24)); // NOI18N
+        calendar.setForeground(new java.awt.Color(255, 255, 255));
+        calendar.setText("   ");
+        calendar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         calendar.setEnabled(false);
         calendar.setOpaque(true);
         getContentPane().add(calendar);
         calendar.setBounds(1040, 210, 240, 140);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
         calendar.setText(LocalDateTime.now().format(formatter));
+
+        calendar.setEnabled(true); // Temporarily enable the label to see if the color changes
+        calendar.setForeground(new java.awt.Color(255, 255, 255)); // Set text color to white
 
         background_img.setBackground(new java.awt.Color(0, 0, 0));
         background_img.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -106,13 +116,18 @@ public class UserHomePage extends javax.swing.JFrame {
         menuBar.setFont(new java.awt.Font("Verdana Pro Cond Black", 0, 20)); // NOI18N
         menuBar.setPreferredSize(new java.awt.Dimension(65, 50));
 
-        home.setText("MENU");
-        home.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 26)); // NOI18N
+        menu.setText(" MENU");
+        menu.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 26)); // NOI18N
 
-        menu.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
-        menu.setText("HOME");
-        home.add(menu);
-        home.add(jSeparator1);
+        home.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        home.setText("HOME");
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        menu.add(home);
+        menu.add(jSeparator1);
 
         logout.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
         logout.setText("LOGOUT");
@@ -121,11 +136,11 @@ public class UserHomePage extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
-        home.add(logout);
+        menu.add(logout);
 
-        menuBar.add(home);
+        menuBar.add(menu);
 
-        jMenu1.setText("                                                                                                                                                                              ");
+        jMenu1.setText("                                                                                                                                                                     ");
         jMenu1.setEnabled(false);
         menuBar.add(jMenu1);
 
@@ -149,7 +164,12 @@ public class UserHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_tasksActionPerformed
 
     private void reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportActionPerformed
-        // TODO add your handling code here:
+          
+         ViewReport viewreport = new ViewReport();
+         
+         this.setVisible(false);
+         viewreport.setVisible(true);
+
     }//GEN-LAST:event_reportActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -162,8 +182,23 @@ public class UserHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
-        // TODO add your handling code here:
+        Help help = new Help();
+
+        help.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_contactActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+
+
+        UserHomePage userhomepage = new UserHomePage();
+        
+        userhomepage.setVisible(true);
+        this.dispose();
+
+
+
+    }//GEN-LAST:event_homeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,12 +239,12 @@ public class UserHomePage extends javax.swing.JFrame {
     private javax.swing.JLabel background_img;
     private javax.swing.JLabel calendar;
     private javax.swing.JButton contact;
-    private javax.swing.JMenu home;
+    private javax.swing.JMenuItem home;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem logout;
-    private javax.swing.JMenuItem menu;
+    private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton report;
     private javax.swing.JButton tasks;

@@ -2,14 +2,15 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.List;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.control.Alert;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -21,8 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Tasks extends javax.swing.JFrame {
-
- 
+    
     public Tasks() {
         
     initComponents();
@@ -30,7 +30,6 @@ public class Tasks extends javax.swing.JFrame {
     addTaskDetailsToScrollPane(jScrollPane2);
 
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,8 +44,12 @@ public class Tasks extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
+        home = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         tasks = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         contact = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         logout = new javax.swing.JMenuItem();
@@ -58,7 +61,6 @@ public class Tasks extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(238, 238, 238));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1300, 900));
 
         jPanel3.setBackground(new java.awt.Color(219, 239, 239));
 
@@ -146,11 +148,11 @@ public class Tasks extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
         menuBar.setForeground(new java.awt.Color(245, 219, 165));
@@ -161,13 +163,43 @@ public class Tasks extends javax.swing.JFrame {
         menu.setText(" MENU");
         menu.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 26)); // NOI18N
 
+        home.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        home.setText("HOME");
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        menu.add(home);
+        menu.add(jSeparator3);
+
         tasks.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
         tasks.setText("TASKS");
+        tasks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tasksActionPerformed(evt);
+            }
+        });
         menu.add(tasks);
         menu.add(jSeparator1);
 
+        jMenuItem1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        jMenuItem1.setText("VIEW REPORT");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu.add(jMenuItem1);
+        menu.add(jSeparator4);
+
         contact.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
-        contact.setText("CONTACT");
+        contact.setText("HELP");
+        contact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactActionPerformed(evt);
+            }
+        });
         menu.add(contact);
         menu.add(jSeparator2);
 
@@ -216,53 +248,73 @@ public class Tasks extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
-    
-        private String selectedTaskName;
-    
-    private void populateComboBox() {
-    try (Connection conn = DatabaseHelper.connect()) {
-        String sql = "SELECT DISTINCT taskname FROM tasks";
-        try (PreparedStatement statement = conn.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                jComboBox1.addItem(resultSet.getString("taskname"));
+ 
+ private String selectedTaskName;
+ 
+  private static final Set<String> allowedExtensions = new HashSet<>(
+            Arrays.asList("docx", "pdf", "txt", "xlsx")
+    );
+   
+        private void populateComboBox() {
+        try (Connection conn = DatabaseHelper.connect()) {
+            String sql = "SELECT DISTINCT taskname FROM tasks";
+            try (PreparedStatement statement = conn.prepareStatement(sql);
+                 ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    jComboBox1.addItem(resultSet.getString("taskname"));
+                }
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
     }
-}
     
     
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
 
      JFileChooser fileChooser = new JFileChooser();
 
-    // File filter to accept certain file types
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-        "Supported Files (*.docx, *.pdf, *.txt, *.xlsx)", "docx", "pdf", "txt", "xlsx");
-    fileChooser.setFileFilter(filter);
+        // File filter to accept certain file types
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Supported Files (*.docx, *.pdf, *.txt, *.xlsx)", "docx", "pdf", "txt", "xlsx");
+        fileChooser.setFileFilter(filter);
 
-    // Showing the open dialog and capture the selected file
-    int returnValue = fileChooser.showOpenDialog(null);
+        // Showing the open dialog and capture the selected file
+        int returnValue = fileChooser.showOpenDialog(null);
 
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile();
-        String filePath = selectedFile.getAbsolutePath();
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
 
-        // Displayimg selected file path
-        System.out.println("Selected file: " + filePath);
-        
-        if (selectedTaskName != null && !selectedTaskName.trim().isEmpty()) {
-            // Updateimg the file path in the database
-            updateFilePath(filePath, selectedTaskName);
+            // Handle file selection
+            handleFileSelection(selectedFile, selectedTaskName);
+        }
+    }//GEN-LAST:event_chooseFileButtonActionPerformed
+
+    private void handleFileSelection(File selectedFile, String taskName) {
+        if (selectedFile != null && taskName != null && !taskName.trim().isEmpty()) {
+            String extension = getFileExtension(selectedFile.getName());
+            if (allowedExtensions.contains(extension.toLowerCase())) {
+                String filePath = selectedFile.getAbsolutePath();
+                updateFilePath(filePath, taskName);
+            } else {
+                JOptionPane.showMessageDialog(this, "Unsupported file type. Please select a file with extensions: .docx, .pdf, .txt, .xlsx", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No task selected. Please select a task first.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    }//GEN-LAST:event_chooseFileButtonActionPerformed
-
     
+    
+     private String getFileExtension(String fileName) {
+        int lastDotIndex = fileName.lastIndexOf('.');
+        if (lastDotIndex == -1) {
+            return ""; // No extension found
+        }
+        return fileName.substring(lastDotIndex + 1);
+    }
+    
+     
+     
     private void updateFilePath(String filePath, String taskName) {
     try (Connection conn = DatabaseHelper.connect()) {
         String sql = "UPDATE tasks SET file_path = ? WHERE TRIM(taskname) = ?";
@@ -281,124 +333,116 @@ public class Tasks extends javax.swing.JFrame {
         ex.printStackTrace();
     }
 }
-
-    
-
-    
     
     
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
    
         selectedTaskName = (String) jComboBox1.getSelectedItem();
 
-        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    
-    
+    private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
+          Tasks tasks = new Tasks();
+          
+          this.setVisible(false);
+          tasks.setVisible(true);
+            }//GEN-LAST:event_tasksActionPerformed
 
-        private ResultSet getTaskDetails() {
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+            Help help = new Help();
+
+            help.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_contactActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+     
+        UserHomePage userhomepage = new UserHomePage();
+        
+        userhomepage.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+         ViewReport viewreport = new ViewReport();
+         
+         this.setVisible(false);
+         viewreport.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+
+    private ResultSet getTaskDetails() {
+    try {
+        Connection conn = DatabaseHelper.connect();
+        String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        return statement.executeQuery();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        return null;
+    }
+}
+
+    // Method to add task details to JScrollPane
+    private void addTaskDetailsToScrollPane(JScrollPane scrollPane) {
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        Font customFont = new Font("Verdana pro", Font.PLAIN, 18);
+
         try {
-            Connection conn = DatabaseHelper.connect();
-            String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            return statement.executeQuery();
+            ResultSet resultSet = getTaskDetails();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    String taskName = resultSet.getString("taskname");
+                    String taskDescription = resultSet.getString("task_description");
+                    String userName = resultSet.getString("name");
+                    String deadline = resultSet.getString("deadline_date");
+
+                    // JPanel for each task detail
+                    JPanel taskPanel = new JPanel();
+                    taskPanel.setLayout(new BoxLayout(taskPanel, BoxLayout.Y_AXIS));
+                    taskPanel.setBackground(Color.WHITE);
+                    taskPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    JLabel taskLabel = new JLabel("Task: " + taskName);
+                    taskLabel.setFont(customFont);
+
+                    JLabel descriptionLabel = new JLabel("Description: " + taskDescription);
+                    descriptionLabel.setFont(customFont);
+
+                    JLabel userLabel = new JLabel("Assigned to: " + userName);
+                    userLabel.setFont(customFont);
+
+                    JLabel deadlineLabel = new JLabel("Deadline: " + deadline);
+                    deadlineLabel.setFont(customFont);
+
+                    // Adding labels to task JPanel
+                    taskPanel.add(taskLabel);
+                    taskPanel.add(descriptionLabel);
+                    taskPanel.add(userLabel);
+                    taskPanel.add(deadlineLabel);
+
+                    // Adding task JPanel to the main panel
+                    panel.add(taskPanel);
+
+                    // Small gap after each taskPanel
+                    panel.add(Box.createRigidArea(new Dimension(0, 10))); // 10 pixels vertical gap
+                }
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
         }
+
+        panel.setBackground(Color.WHITE);
+
+        scrollPane.setViewportView(panel);
     }
 
-            // Method to add task details to JScrollPane
-            private void addTaskDetailsToScrollPane(JScrollPane scrollPane) {
-                
-                JPanel panel = new JPanel();
-                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-                Font customFont = new Font("Verdana pro", Font.PLAIN, 18);
 
-                try {
-                    ResultSet resultSet = getTaskDetails();
-                    if (resultSet != null) {
-                        while (resultSet.next()) {
-                            String taskName = resultSet.getString("taskname");
-                            String taskDescription = resultSet.getString("task_description");
-                            String userName = resultSet.getString("name");
-                            String deadline = resultSet.getString("deadline_date");
-
-                            // Create JPanel for each task detail
-                            JPanel taskPanel = new JPanel();
-                            taskPanel.setLayout(new BoxLayout(taskPanel, BoxLayout.Y_AXIS));
-                            taskPanel.setBackground(Color.WHITE);
-                            taskPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-                            // Create labels for task details and set the custom font
-                            JLabel taskLabel = new JLabel("Task: " + taskName);
-                            taskLabel.setFont(customFont);
-
-                            JLabel descriptionLabel = new JLabel("Description: " + taskDescription);
-                            descriptionLabel.setFont(customFont);
-
-                            JLabel userLabel = new JLabel("Assigned to: " + userName);
-                            userLabel.setFont(customFont);
-
-                            JLabel deadlineLabel = new JLabel("Deadline: " + deadline);
-                            deadlineLabel.setFont(customFont);
-
-                            // Adding labels to task JPanel
-                            taskPanel.add(taskLabel);
-                            taskPanel.add(descriptionLabel);
-                            taskPanel.add(userLabel);
-                            taskPanel.add(deadlineLabel);
-
-                            // Adding task JPanel to the main panel
-                            panel.add(taskPanel);
-
-                            // Small gap after each taskPanel
-                            panel.add(Box.createRigidArea(new Dimension(0, 10))); // 10 pixels vertical gap
-                        }
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-
-                panel.setBackground(Color.WHITE);
-
-                scrollPane.setViewportView(panel);
-            }
-
-
-
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-            
-
-      
-    
-    
-    
-    
     
     /**
      * @param args the command line arguments
@@ -438,15 +482,19 @@ public class Tasks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JMenuItem contact;
+    private javax.swing.JMenuItem home;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem logout;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
