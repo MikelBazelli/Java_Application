@@ -1,3 +1,18 @@
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +30,8 @@ public class ViewReport extends javax.swing.JFrame {
      */
     public ViewReport() {
         initComponents();
+            addTaskDetailsToScrollPane(jScrollPane1);
+
     }
 
     /**
@@ -28,6 +45,8 @@ public class ViewReport extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         viewreport_label = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         home = new javax.swing.JMenuItem();
@@ -50,6 +69,25 @@ public class ViewReport extends javax.swing.JFrame {
         viewreport_label.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 36)); // NOI18N
         viewreport_label.setText("VIEW REPORT");
 
+        jPanel2.setBackground(new java.awt.Color(219, 239, 239));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -58,13 +96,19 @@ public class ViewReport extends javax.swing.JFrame {
                 .addContainerGap(572, Short.MAX_VALUE)
                 .addComponent(viewreport_label)
                 .addGap(512, 512, 512))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(viewreport_label)
-                .addContainerGap(799, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         menuBar.setForeground(new java.awt.Color(245, 219, 165));
@@ -188,6 +232,103 @@ public class ViewReport extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
+    
+    
+    
+    
+    
+
+       private ResultSet getTaskDetails() {
+    try {
+        Connection conn = DatabaseHelper.connect();
+        String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        return statement.executeQuery();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        return null;
+    }
+}
+
+    // Method to add task details to JScrollPane
+    private void addTaskDetailsToScrollPane(JScrollPane scrollPane) {
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        Font customFont = new Font("Verdana pro", Font.PLAIN, 18);
+
+        try {
+            ResultSet resultSet = getTaskDetails();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    String taskName = resultSet.getString("taskname");
+                    String taskDescription = resultSet.getString("task_description");
+                    String userName = resultSet.getString("name");
+                    String deadline = resultSet.getString("deadline_date");
+                    String fileName = resultSet.getString("file_path");
+                    String reportText = resultSet.getString("report_text"); 
+
+                    // JPanel for each task detail
+                    JPanel taskPanel = new JPanel();
+                    taskPanel.setLayout(new BoxLayout(taskPanel, BoxLayout.Y_AXIS));
+                    taskPanel.setBackground(Color.WHITE);
+                    taskPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    JLabel taskLabel = new JLabel("Task: " + taskName);
+                    taskLabel.setFont(customFont);
+
+                    JLabel descriptionLabel = new JLabel("Description: " + taskDescription);
+                    descriptionLabel.setFont(customFont);
+
+                    JLabel userLabel = new JLabel("Assigned to: " + userName);
+                    userLabel.setFont(customFont);
+
+                    JLabel deadlineLabel = new JLabel("Deadline: " + deadline);
+                    deadlineLabel.setFont(customFont);
+                    
+                    JLabel filepath1 = new JLabel("File path to: " + fileName);
+                    filepath1.setFont(customFont);
+
+                    JLabel report1 = new JLabel("Report: " + reportText);
+                    report1.setFont(customFont);
+                    
+                   
+                    // Adding labels to task JPanel
+                    taskPanel.add(taskLabel);
+                    taskPanel.add(descriptionLabel);
+                    taskPanel.add(userLabel);
+                    taskPanel.add(deadlineLabel);
+                    taskPanel.add(filepath1);
+                    taskPanel.add(report1);
+                    
+                    
+
+                    // Adding task JPanel to the main panel
+                    panel.add(taskPanel);
+
+                    // Small gap after each taskPanel
+                    panel.add(Box.createRigidArea(new Dimension(0, 10))); // 10 pixels vertical gap
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        panel.setBackground(Color.WHITE);
+
+        scrollPane.setViewportView(panel);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -229,6 +370,8 @@ public class ViewReport extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;

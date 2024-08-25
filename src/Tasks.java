@@ -335,46 +335,7 @@ public class Tasks extends javax.swing.JFrame {
 }
     
     
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-   
-        selectedTaskName = (String) jComboBox1.getSelectedItem();
-
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
-          Tasks tasks = new Tasks();
-          
-          this.setVisible(false);
-          tasks.setVisible(true);
-            }//GEN-LAST:event_tasksActionPerformed
-
-    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
-            Help help = new Help();
-
-            help.setVisible(true);
-            this.setVisible(false);
-    }//GEN-LAST:event_contactActionPerformed
-
-    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
-     
-        UserHomePage userhomepage = new UserHomePage();
-        
-        userhomepage.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_homeActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-         ViewReport viewreport = new ViewReport();
-         
-         this.setVisible(false);
-         viewreport.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-
-    private ResultSet getTaskDetails() {
+       private ResultSet getTaskDetails() {
     try {
         Connection conn = DatabaseHelper.connect();
         String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
@@ -443,6 +404,48 @@ public class Tasks extends javax.swing.JFrame {
     }
 
 
+    
+    
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+   
+        selectedTaskName = (String) jComboBox1.getSelectedItem();
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
+          Tasks tasks = new Tasks();
+          
+          this.setVisible(false);
+          tasks.setVisible(true);
+            }//GEN-LAST:event_tasksActionPerformed
+
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+            Help help = new Help();
+
+            help.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_contactActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+     
+        UserHomePage userhomepage = new UserHomePage();
+        
+        userhomepage.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+         ViewReport viewreport = new ViewReport();
+         
+         this.setVisible(false);
+         viewreport.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+
+ 
     
     /**
      * @param args the command line arguments
