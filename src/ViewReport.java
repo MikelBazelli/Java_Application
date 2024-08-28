@@ -30,7 +30,7 @@ public class ViewReport extends javax.swing.JFrame {
      */
     public ViewReport() {
         initComponents();
-            addTaskDetailsToScrollPane(jScrollPane1);
+        addTaskDetailsToScrollPane(jScrollPane1);
 
     }
 
@@ -231,12 +231,6 @@ public class ViewReport extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
-
-    
-    
-    
-    
-    
 
        private ResultSet getTaskDetails() {
     try {

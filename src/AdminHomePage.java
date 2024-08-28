@@ -1,3 +1,7 @@
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,36 +31,312 @@ public class AdminHomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        help = new javax.swing.JButton();
+        manage_tasks = new javax.swing.JButton();
+        register_workers = new javax.swing.JButton();
+        upload_tasks = new javax.swing.JButton();
+        employees = new javax.swing.JButton();
+        calendar = new javax.swing.JLabel();
+        background_img1 = new javax.swing.JLabel();
+        menuBar1 = new javax.swing.JMenuBar();
+        menu1 = new javax.swing.JMenu();
+        home = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        employees1 = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        upload_tasks1 = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        manage_tasks1 = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        register_workers1 = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        help1 = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        logout1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        title1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(238, 238, 238));
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(1400, 950));
+        jPanel1.setRequestFocusEnabled(false);
+
+        help.setBackground(new java.awt.Color(0, 0, 0));
+        help.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        help.setText("HELP");
+        help.setPreferredSize(new java.awt.Dimension(267, 45));
+        help.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpActionPerformed(evt);
+            }
+        });
+
+        manage_tasks.setBackground(new java.awt.Color(0, 0, 0));
+        manage_tasks.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        manage_tasks.setText("MANAGE TASKS");
+        manage_tasks.setPreferredSize(new java.awt.Dimension(267, 45));
+        manage_tasks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manage_tasksActionPerformed(evt);
+            }
+        });
+
+        register_workers.setBackground(new java.awt.Color(0, 0, 0));
+        register_workers.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        register_workers.setText("REGISTER WORKERS");
+        register_workers.setPreferredSize(new java.awt.Dimension(267, 45));
+        register_workers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register_workersActionPerformed(evt);
+            }
+        });
+
+        upload_tasks.setBackground(new java.awt.Color(0, 0, 0));
+        upload_tasks.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        upload_tasks.setText("UPLOAD TASKS");
+        upload_tasks.setPreferredSize(new java.awt.Dimension(267, 45));
+        upload_tasks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upload_tasksActionPerformed(evt);
+            }
+        });
+
+        employees.setBackground(new java.awt.Color(0, 0, 0));
+        employees.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        employees.setText("EMPLOYEES");
+        employees.setPreferredSize(new java.awt.Dimension(267, 45));
+        employees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeesActionPerformed(evt);
+            }
+        });
+
+        calendar.setBackground(new java.awt.Color(51, 51, 51));
+        calendar.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 1, 24)); // NOI18N
+        calendar.setForeground(new java.awt.Color(255, 255, 255));
+        calendar.setText("   ");
+        calendar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        calendar.setEnabled(false);
+        calendar.setOpaque(true);
+
+        background_img1.setBackground(new java.awt.Color(0, 0, 0));
+        background_img1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        background_img1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img4.png"))); // NOI18N
+        background_img1.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1300, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(register_workers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manage_tasks, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(employees, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(upload_tasks, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 682, Short.MAX_VALUE)
+                        .addComponent(calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(630, 630, 630))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(background_img1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 925, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(employees, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(upload_tasks, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(calendar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(manage_tasks, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(register_workers, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(240, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(background_img1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+        calendar.setText(LocalDateTime.now().format(formatter));
+
+        calendar.setEnabled(true); // Temporarily enable the label to see if the color changes
+        calendar.setForeground(new java.awt.Color(255, 255, 255)); // Set text color to white
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, -1));
+
+        menuBar1.setForeground(new java.awt.Color(245, 219, 165));
+        menuBar1.setToolTipText("");
+        menuBar1.setFont(new java.awt.Font("Verdana Pro Cond Black", 0, 20)); // NOI18N
+        menuBar1.setPreferredSize(new java.awt.Dimension(65, 50));
+
+        menu1.setText(" MENU");
+        menu1.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 26)); // NOI18N
+
+        home.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        home.setText("HOME");
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        menu1.add(home);
+        menu1.add(jSeparator6);
+
+        employees1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        employees1.setText("EMPLOYEES");
+        employees1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employees1ActionPerformed(evt);
+            }
+        });
+        menu1.add(employees1);
+        menu1.add(jSeparator7);
+
+        upload_tasks1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        upload_tasks1.setText("UPLOAD TASKS");
+        upload_tasks1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upload_tasks1ActionPerformed(evt);
+            }
+        });
+        menu1.add(upload_tasks1);
+        menu1.add(jSeparator9);
+
+        manage_tasks1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        manage_tasks1.setText("MANAGE TASKS");
+        manage_tasks1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manage_tasks1ActionPerformed(evt);
+            }
+        });
+        menu1.add(manage_tasks1);
+        menu1.add(jSeparator10);
+
+        register_workers1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        register_workers1.setText("REGISTER WORKERS");
+        register_workers1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register_workers1ActionPerformed(evt);
+            }
+        });
+        menu1.add(register_workers1);
+        menu1.add(jSeparator11);
+
+        help1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        help1.setText("HELP");
+        help1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                help1ActionPerformed(evt);
+            }
+        });
+        menu1.add(help1);
+        menu1.add(jSeparator8);
+
+        logout1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
+        logout1.setText("LOGOUT");
+        logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout1ActionPerformed(evt);
+            }
+        });
+        menu1.add(logout1);
+
+        menuBar1.add(menu1);
+
+        jMenu2.setText("                                                                                                                                                      ");
+        jMenu2.setEnabled(false);
+        menuBar1.add(jMenu2);
+
+        title1.setText("SKY CODE");
+        title1.setFont(new java.awt.Font("Verdana Pro Semibold", 0, 48)); // NOI18N
+        menuBar1.add(title1);
+
+        setJMenuBar(menuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_help1ActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+
+        AdminHomePage adminhomepage = new AdminHomePage();
+
+        adminhomepage.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void employees1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employees1ActionPerformed
+        Employees empolyees = new Employees();
+               
+        empolyees.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_employees1ActionPerformed
+
+    private void upload_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_tasks1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upload_tasks1ActionPerformed
+
+    private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logout1ActionPerformed
+
+    private void manage_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasks1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manage_tasks1ActionPerformed
+
+    private void register_workers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workers1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_register_workers1ActionPerformed
+
+    private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpActionPerformed
+
+    private void manage_tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manage_tasksActionPerformed
+
+    private void register_workersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_register_workersActionPerformed
+
+    private void upload_tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_tasksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upload_tasksActionPerformed
+
+    private void employeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeesActionPerformed
+
+        Employees empolyees = new Employees();
+               
+        empolyees.setVisible(true);
+        this.dispose();       
+    }//GEN-LAST:event_employeesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,6 +374,30 @@ public class AdminHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background_img1;
+    private javax.swing.JLabel calendar;
+    private javax.swing.JButton employees;
+    private javax.swing.JMenuItem employees1;
+    private javax.swing.JButton help;
+    private javax.swing.JMenuItem help1;
+    private javax.swing.JMenuItem home;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JMenuItem logout1;
+    private javax.swing.JButton manage_tasks;
+    private javax.swing.JMenuItem manage_tasks1;
+    private javax.swing.JMenu menu1;
+    private javax.swing.JMenuBar menuBar1;
+    private javax.swing.JButton register_workers;
+    private javax.swing.JMenuItem register_workers1;
+    private javax.swing.JMenu title1;
+    private javax.swing.JButton upload_tasks;
+    private javax.swing.JMenuItem upload_tasks1;
     // End of variables declaration//GEN-END:variables
 }
