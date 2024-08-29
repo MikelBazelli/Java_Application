@@ -265,7 +265,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         menuBar1.add(menu1);
 
-        jMenu2.setText("                                                                                                                                                      ");
+        jMenu2.setText("                                                                                                                                                            ");
         jMenu2.setEnabled(false);
         menuBar1.add(jMenu2);
 
@@ -299,11 +299,19 @@ public class AdminHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_employees1ActionPerformed
 
     private void upload_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_tasks1ActionPerformed
-        // TODO add your handling code here:
+
+         UploadTasks uploadtasks = new UploadTasks();
+         
+         this.setVisible(false);
+         uploadtasks.setVisible(true);
+
     }//GEN-LAST:event_upload_tasks1ActionPerformed
 
     private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
-        // TODO add your handling code here:
+        Main main = new Main();
+
+        main.setVisible(true);
+        this.dispose();     
     }//GEN-LAST:event_logout1ActionPerformed
 
     private void manage_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasks1ActionPerformed
@@ -327,7 +335,10 @@ public class AdminHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_register_workersActionPerformed
 
     private void upload_tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_tasksActionPerformed
-        // TODO add your handling code here:
+        UploadTasks uploadtasks = new UploadTasks();
+         
+         this.setVisible(false);
+         uploadtasks.setVisible(true);
     }//GEN-LAST:event_upload_tasksActionPerformed
 
     private void employeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeesActionPerformed

@@ -117,7 +117,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                                                                      "/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                            "/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Menu>
