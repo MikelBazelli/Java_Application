@@ -34,7 +34,6 @@ public class UserHomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         tasks = new javax.swing.JButton();
-        report = new javax.swing.JButton();
         contact = new javax.swing.JButton();
         calendar = new javax.swing.JLabel();
         background_img = new javax.swing.JLabel();
@@ -44,8 +43,6 @@ public class UserHomePage extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         tasks1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         contact1 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         logout = new javax.swing.JMenuItem();
@@ -70,18 +67,6 @@ public class UserHomePage extends javax.swing.JFrame {
         getContentPane().add(tasks);
         tasks.setBounds(90, 170, 270, 120);
 
-        report.setBackground(new java.awt.Color(0, 0, 0));
-        report.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
-        report.setForeground(new java.awt.Color(255, 255, 255));
-        report.setText("VIEW REPORT");
-        report.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportActionPerformed(evt);
-            }
-        });
-        getContentPane().add(report);
-        report.setBounds(90, 390, 270, 120);
-
         contact.setBackground(new java.awt.Color(0, 0, 0));
         contact.setFont(new java.awt.Font("Verdana Pro", 1, 22)); // NOI18N
         contact.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,7 +77,7 @@ public class UserHomePage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(contact);
-        contact.setBounds(90, 610, 270, 120);
+        contact.setBounds(90, 440, 270, 120);
 
         calendar.setBackground(new java.awt.Color(51, 51, 51));
         calendar.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 1, 24)); // NOI18N
@@ -145,16 +130,6 @@ public class UserHomePage extends javax.swing.JFrame {
         menu.add(tasks1);
         menu.add(jSeparator1);
 
-        jMenuItem1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
-        jMenuItem1.setText("VIEW REPORT");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menu.add(jMenuItem1);
-        menu.add(jSeparator4);
-
         contact1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
         contact1.setText("HELP");
         contact1.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +151,7 @@ public class UserHomePage extends javax.swing.JFrame {
 
         menuBar.add(menu);
 
-        jMenu1.setText("                                                                                                                                                      ");
+        jMenu1.setText("                                                                                                                                                                        ");
         jMenu1.setEnabled(false);
         menuBar.add(jMenu1);
 
@@ -189,24 +164,6 @@ public class UserHomePage extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
-       
-          Tasks tasks = new Tasks();
-          
-          this.setVisible(false);
-          tasks.setVisible(true);
-        
-    }//GEN-LAST:event_tasksActionPerformed
-
-    private void reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportActionPerformed
-          
-         ViewReport viewreport = new ViewReport();
-         
-         this.setVisible(false);
-         viewreport.setVisible(true);
-
-    }//GEN-LAST:event_reportActionPerformed
 
     private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
         Help help = new Help();
@@ -223,21 +180,6 @@ public class UserHomePage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_homeActionPerformed
 
-    private void tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasks1ActionPerformed
-        Tasks tasks = new Tasks();
-
-        this.setVisible(false);
-        tasks.setVisible(true);
-    }//GEN-LAST:event_tasks1ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-        ViewReport viewreport = new ViewReport();
-
-        this.setVisible(false);
-        viewreport.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void contact1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contact1ActionPerformed
         Help help = new Help();
 
@@ -252,6 +194,21 @@ public class UserHomePage extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasks1ActionPerformed
+        Tasks tasks = new Tasks();
+
+        this.setVisible(false);
+        tasks.setVisible(true);
+    }//GEN-LAST:event_tasks1ActionPerformed
+
+    private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
+
+        Tasks tasks = new Tasks();
+
+        this.setVisible(false);
+        tasks.setVisible(true);
+    }//GEN-LAST:event_tasksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,15 +252,12 @@ public class UserHomePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem contact1;
     private javax.swing.JMenuItem home;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem logout;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JButton report;
     private javax.swing.JButton tasks;
     private javax.swing.JMenuItem tasks1;
     private javax.swing.JMenu title;

@@ -2,8 +2,10 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.List;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,17 +40,14 @@ public class Tasks extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         chooseFileButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         jComboBox1 = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         home = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         tasks = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         contact = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -64,6 +63,7 @@ public class Tasks extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(219, 239, 239));
 
+        chooseFileButton.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
         chooseFileButton.setText("Choose File");
         chooseFileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,61 +71,43 @@ public class Tasks extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(219, 239, 239));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setOpaque(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
+        jComboBox1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setOpaque(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(chooseFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(chooseFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chooseFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(204, 204, 204))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chooseFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 65, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Verdana Pro Cond Semibold", 0, 36)); // NOI18N
@@ -141,9 +123,9 @@ public class Tasks extends javax.swing.JFrame {
                         .addGap(535, 535, 535)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +134,7 @@ public class Tasks extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         menuBar.setForeground(new java.awt.Color(245, 219, 165));
@@ -181,16 +163,6 @@ public class Tasks extends javax.swing.JFrame {
             }
         });
         menu.add(tasks);
-        menu.add(jSeparator1);
-
-        jMenuItem1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
-        jMenuItem1.setText("VIEW REPORT");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menu.add(jMenuItem1);
         menu.add(jSeparator4);
 
         contact.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
@@ -228,13 +200,17 @@ public class Tasks extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,13 +227,14 @@ public class Tasks extends javax.swing.JFrame {
  
  private String selectedTaskName;
  
+ // Selecting spesific file extentions
   private static final Set<String> allowedExtensions = new HashSet<>(
             Arrays.asList("docx", "pdf", "txt", "xlsx")
     );
    
         private void populateComboBox() {
         try (Connection conn = DatabaseHelper.connect()) {
-            String sql = "SELECT DISTINCT taskname FROM tasks";
+        String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
             try (PreparedStatement statement = conn.prepareStatement(sql);
                  ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -269,7 +246,7 @@ public class Tasks extends javax.swing.JFrame {
         }
     }
     
-    
+    // Button into file chooser
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
 
      JFileChooser fileChooser = new JFileChooser();
@@ -290,21 +267,41 @@ public class Tasks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chooseFileButtonActionPerformed
 
-    private void handleFileSelection(File selectedFile, String taskName) {
-        if (selectedFile != null && taskName != null && !taskName.trim().isEmpty()) {
-            String extension = getFileExtension(selectedFile.getName());
-            if (allowedExtensions.contains(extension.toLowerCase())) {
-                String filePath = selectedFile.getAbsolutePath();
+// Upload tasks will be send into this folder 
+ private final String uploadsFolderPath = "C:\\Users\\mpaze\\OneDrive\\Έγγραφα\\NetBeansProjects\\Myapp\\uploads"; // Path to the uploads folder
+
+// Validation of file extentions
+private void handleFileSelection(File selectedFile, String taskName) {
+    if (selectedFile != null && taskName != null && !taskName.trim().isEmpty()) {
+        String extension = getFileExtension(selectedFile.getName());
+        if (allowedExtensions.contains(extension.toLowerCase())) {
+            File uploadDir = new File(uploadsFolderPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs(); 
+            }
+
+            String newFileName = taskName.replaceAll("\\s+", "_") + "." + extension;
+            File destinationFile = new File(uploadDir, newFileName);
+
+            try {
+                Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Updatint the file path in the database
+                String filePath = destinationFile.getAbsolutePath();
                 updateFilePath(filePath, taskName);
-            } else {
-                JOptionPane.showMessageDialog(this, "Unsupported file type. Please select a file with extensions: .docx, .pdf, .txt, .xlsx", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Failed to save file. Exception: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No task selected. Please select a task first.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unsupported file type. Please select a file with extensions: .docx, .pdf, .txt, .xlsx", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "No task selected. Please select a task first.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
     
-    
+    // Validation of file extentions
      private String getFileExtension(String fileName) {
         int lastDotIndex = fileName.lastIndexOf('.');
         if (lastDotIndex == -1) {
@@ -314,8 +311,8 @@ public class Tasks extends javax.swing.JFrame {
     }
     
      
-     
-    private void updateFilePath(String filePath, String taskName) {
+    // Updating database info
+   private void updateFilePath(String filePath, String taskName) {
     try (Connection conn = DatabaseHelper.connect()) {
         String sql = "UPDATE tasks SET file_path = ? WHERE TRIM(taskname) = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -333,18 +330,19 @@ public class Tasks extends javax.swing.JFrame {
         ex.printStackTrace();
     }
 }
-    
-    
+     
+      // Printing tasks
        private ResultSet getTaskDetails() {
-    try {
-        Connection conn = DatabaseHelper.connect();
-        String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        return statement.executeQuery();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        return null;
-    }
+           
+            try {
+                Connection conn = DatabaseHelper.connect();
+                String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                return statement.executeQuery();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return null;
+            }
 }
 
     // Method to add task details to JScrollPane
@@ -358,10 +356,11 @@ public class Tasks extends javax.swing.JFrame {
             ResultSet resultSet = getTaskDetails();
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    String taskName = resultSet.getString("taskname");
+         String taskName = resultSet.getString("taskname");
                     String taskDescription = resultSet.getString("task_description");
                     String userName = resultSet.getString("name");
                     String deadline = resultSet.getString("deadline_date");
+                    String reportText = resultSet.getString("report_text"); 
 
                     // JPanel for each task detail
                     JPanel taskPanel = new JPanel();
@@ -380,12 +379,18 @@ public class Tasks extends javax.swing.JFrame {
 
                     JLabel deadlineLabel = new JLabel("Deadline: " + deadline);
                     deadlineLabel.setFont(customFont);
+                            
+                            
+                    JLabel report1 = new JLabel("Report: " + reportText);
+                    report1.setFont(customFont);
 
                     // Adding labels to task JPanel
                     taskPanel.add(taskLabel);
                     taskPanel.add(descriptionLabel);
                     taskPanel.add(userLabel);
                     taskPanel.add(deadlineLabel);
+                    taskPanel.add(report1);
+
 
                     // Adding task JPanel to the main panel
                     panel.add(taskPanel);
@@ -415,8 +420,8 @@ public class Tasks extends javax.swing.JFrame {
     private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
           Tasks tasks = new Tasks();
           
-          this.setVisible(false);
           tasks.setVisible(true);
+          this.setVisible(false);
             }//GEN-LAST:event_tasksActionPerformed
 
     private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
@@ -434,15 +439,6 @@ public class Tasks extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_homeActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-         ViewReport viewreport = new ViewReport();
-         
-         this.setVisible(false);
-         viewreport.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
  
@@ -489,12 +485,9 @@ public class Tasks extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

@@ -57,6 +57,7 @@ public class AdminHomePage extends javax.swing.JFrame {
         title1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ADMIN HOME");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -66,6 +67,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         help.setBackground(new java.awt.Color(0, 0, 0));
         help.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        help.setForeground(new java.awt.Color(255, 255, 255));
         help.setText("HELP");
         help.setPreferredSize(new java.awt.Dimension(267, 45));
         help.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +78,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         manage_tasks.setBackground(new java.awt.Color(0, 0, 0));
         manage_tasks.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        manage_tasks.setForeground(new java.awt.Color(255, 255, 255));
         manage_tasks.setText("MANAGE TASKS");
         manage_tasks.setPreferredSize(new java.awt.Dimension(267, 45));
         manage_tasks.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +89,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         register_workers.setBackground(new java.awt.Color(0, 0, 0));
         register_workers.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        register_workers.setForeground(new java.awt.Color(255, 255, 255));
         register_workers.setText("REGISTER WORKERS");
         register_workers.setPreferredSize(new java.awt.Dimension(267, 45));
         register_workers.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +100,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         upload_tasks.setBackground(new java.awt.Color(0, 0, 0));
         upload_tasks.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        upload_tasks.setForeground(new java.awt.Color(255, 255, 255));
         upload_tasks.setText("UPLOAD TASKS");
         upload_tasks.setPreferredSize(new java.awt.Dimension(267, 45));
         upload_tasks.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +111,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         employees.setBackground(new java.awt.Color(0, 0, 0));
         employees.setFont(new java.awt.Font("Verdana Pro", 1, 19)); // NOI18N
+        employees.setForeground(new java.awt.Color(255, 255, 255));
         employees.setText("EMPLOYEES");
         employees.setPreferredSize(new java.awt.Dimension(267, 45));
         employees.addActionListener(new java.awt.event.ActionListener() {
@@ -265,7 +271,7 @@ public class AdminHomePage extends javax.swing.JFrame {
 
         menuBar1.add(menu1);
 
-        jMenu2.setText("                                                                                                                                                            ");
+        jMenu2.setText("                                                                                                                                                                      ");
         jMenu2.setEnabled(false);
         menuBar1.add(jMenu2);
 
@@ -315,23 +321,45 @@ public class AdminHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_logout1ActionPerformed
 
     private void manage_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasks1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_manage_tasks1ActionPerformed
+        ManageTasks managetasks = new ManageTasks();
+         
+         this.setVisible(false);
+         managetasks.setVisible(true);    }//GEN-LAST:event_manage_tasks1ActionPerformed
 
     private void register_workers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workers1ActionPerformed
-        // TODO add your handling code here:
+
+        Register register = new Register();
+        
+        this.setVisible(false);
+        register.setVisible(true);
+
     }//GEN-LAST:event_register_workers1ActionPerformed
 
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
-        // TODO add your handling code here:
+
+        HelpAdmin helpadmin = new HelpAdmin();
+        
+        this.setVisible(false);
+        helpadmin.setVisible(true);
+        
     }//GEN-LAST:event_helpActionPerformed
 
     private void manage_tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasksActionPerformed
-        // TODO add your handling code here:
+   
+         ManageTasks managetasks = new ManageTasks();
+         
+         this.setVisible(false);
+         managetasks.setVisible(true);
+
     }//GEN-LAST:event_manage_tasksActionPerformed
 
     private void register_workersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workersActionPerformed
-        // TODO add your handling code here:
+
+
+         Register register = new Register();
+         
+         this.setVisible(false);
+         register.setVisible(true);
     }//GEN-LAST:event_register_workersActionPerformed
 
     private void upload_tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_tasksActionPerformed

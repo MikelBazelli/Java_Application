@@ -52,8 +52,6 @@ public class ViewReport extends javax.swing.JFrame {
         home = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         tasks = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         contact = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -62,6 +60,7 @@ public class ViewReport extends javax.swing.JFrame {
         title = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("VIEW REPORT");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(238, 238, 238));
@@ -137,16 +136,6 @@ public class ViewReport extends javax.swing.JFrame {
             }
         });
         menu.add(tasks);
-        menu.add(jSeparator1);
-
-        jMenuItem1.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
-        jMenuItem1.setText("VIEW REPORT");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menu.add(jMenuItem1);
         menu.add(jSeparator4);
 
         contact.setFont(new java.awt.Font("Verdana Pro", 0, 16)); // NOI18N
@@ -205,17 +194,10 @@ public class ViewReport extends javax.swing.JFrame {
     private void tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksActionPerformed
         Tasks tasks = new Tasks();
 
+        tasks.setVisible(true); 
         this.setVisible(false);
-        tasks.setVisible(true);
+
     }//GEN-LAST:event_tasksActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-        ViewReport viewreport = new ViewReport();
-
-        this.setVisible(false);
-        viewreport.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
         Help help = new Help();
@@ -232,16 +214,19 @@ public class ViewReport extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
+    
+    // Extraction of tasks
        private ResultSet getTaskDetails() {
-    try {
-        Connection conn = DatabaseHelper.connect();
-        String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        return statement.executeQuery();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        return null;
-    }
+           
+            try {
+                Connection conn = DatabaseHelper.connect();
+                String sql = "SELECT tasks.*, register.name FROM tasks JOIN register ON tasks.user_id = register.id";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                return statement.executeQuery();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                return null;
+            }
 }
 
     // Method to add task details to JScrollPane
@@ -362,11 +347,9 @@ public class ViewReport extends javax.swing.JFrame {
     private javax.swing.JMenuItem contact;
     private javax.swing.JMenuItem home;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

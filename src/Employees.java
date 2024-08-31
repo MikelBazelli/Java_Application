@@ -47,7 +47,7 @@ public class Employees extends javax.swing.JFrame {
         title1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1824, 950));
+        setTitle("Employees");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(219, 239, 239));
@@ -72,11 +72,11 @@ public class Employees extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(29, 29, 29)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,21 +218,35 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_upload_tasks1ActionPerformed
 
     private void manage_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasks1ActionPerformed
-        // TODO add your handling code here:
+
+        ManageTasks managetasks = new ManageTasks();
+        
+        this.setVisible(false);
+        managetasks.setVisible(true);
     }//GEN-LAST:event_manage_tasks1ActionPerformed
 
     private void register_workers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workers1ActionPerformed
-        // TODO add your handling code here:
+              
+        Register register = new Register();
+        
+        this.setVisible(false);
+        register.setVisible(true);
     }//GEN-LAST:event_register_workers1ActionPerformed
 
     private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
-        // TODO add your handling code here:
+
+        HelpAdmin helpadmin = new HelpAdmin();
+        
+        this.setVisible(false);
+        helpadmin.setVisible(true);
     }//GEN-LAST:event_help1ActionPerformed
 
     private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
         Main main = new Main();
 
         main.setVisible(true);
+        this.dispose();
+
         this.dispose();    }//GEN-LAST:event_logout1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -246,7 +260,7 @@ public class Employees extends javax.swing.JFrame {
         
     }//GEN-LAST:event_deleteActionPerformed
    
-
+   // Getting each employees info from the database 
     private ResultSet getEmployeeDetails() {
     try {
         Connection conn = DatabaseHelper.connect();
@@ -259,13 +273,12 @@ public class Employees extends javax.swing.JFrame {
     }
 }
 
-    // Method to add employee details to JScrollPane
+    // Method to add employee details to JScrollPane and customize it like a table
      private void addEmployeeDetailsToScrollPane(JScrollPane scrollPane) {
         ResultSet rs = getEmployeeDetails();
         JPanel panel = new JPanel(new GridLayout(0, 8, 10, 10));
         if (rs != null) {
             try {
-                // Create a font with size 18
                 Font font = new Font("Arial", Font.PLAIN, 18);
 
                 while (rs.next()) {
@@ -288,21 +301,18 @@ public class Employees extends javax.swing.JFrame {
         }
     }
 
-    // Helper method to create header labels
+    // Helper method to create custom header labels
     private JLabel createHeaderLabel(String text, Font font) {
-    // Update the font to size 18
-    Font newFont = font.deriveFont(18f);
-    
-    JLabel label = new JLabel(text);
-    label.setFont(newFont);
-    label.setForeground(Color.BLACK);
-    return label;
+
+        Font newFont = font.deriveFont(18f);    
+        JLabel label = new JLabel(text);
+        label.setFont(newFont);
+        label.setForeground(Color.BLACK);
+        return label;
 }
 
-
     
-    
-     // Method to populate JComboBox with employee details
+    // Method to populate JComboBox with employee details
     private void populateEmployeeComboBox() {
         try (Connection conn = DatabaseHelper.connect()) {
             String sql = "SELECT id, name, lastname FROM register";
@@ -313,7 +323,6 @@ public class Employees extends javax.swing.JFrame {
                     String name = resultSet.getString("name");
                     String lastName = resultSet.getString("lastname");
 
-                    // Add formatted string to JComboBox
                     jComboBox1.addItem(id + " - " + name + " " + lastName);
                 }
             }
@@ -340,6 +349,7 @@ public class Employees extends javax.swing.JFrame {
 
                if (rowsDeleted > 0) {
                    JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
+                   
                    // Refresh the combo box and the scroll pane
                    jComboBox1.removeItem(selectedItem);
                    addEmployeeDetailsToScrollPane(jScrollPane1);
@@ -355,10 +365,6 @@ public class Employees extends javax.swing.JFrame {
        }
    }
 
-    
-    
-    
-    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

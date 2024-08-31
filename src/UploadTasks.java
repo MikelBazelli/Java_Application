@@ -1,3 +1,9 @@
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +21,8 @@ public class UploadTasks extends javax.swing.JFrame {
      */
     public UploadTasks() {
         initComponents();
+        populateEmployeeComboBox();
+
     }
 
     /**
@@ -33,11 +41,12 @@ public class UploadTasks extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        taskDescriptionArea = new javax.swing.JTextArea();
+        insertButton = new javax.swing.JButton();
+        messageText = new javax.swing.JLabel();
+        taskNameField = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        deadlineField = new javax.swing.JTextField();
         menuBar1 = new javax.swing.JMenuBar();
         menu1 = new javax.swing.JMenu();
         home = new javax.swing.JMenuItem();
@@ -57,109 +66,124 @@ public class UploadTasks extends javax.swing.JFrame {
         title1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Uoload Tasks");
+        setTitle("UPLOAD TASKS");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
 
-        jLabel1.setFont(new java.awt.Font("Verdana Pro Semibold", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana Pro Semibold", 0, 36)); // NOI18N
         jLabel1.setText("Create New Task");
 
-        jLabel2.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        jLabel2.setText("Task Name");
 
-        jLabel3.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jLabel3.setText("jLabel3");
+        jLabel3.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        jLabel3.setText("Task Description");
 
-        jLabel4.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jLabel4.setText("jLabel4");
+        jLabel4.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        jLabel4.setText("Worker");
 
-        jLabel5.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jLabel5.setText("jLabel5");
+        jLabel5.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        jLabel5.setText("Dead-Line");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taskDescriptionArea.setColumns(20);
+        taskDescriptionArea.setFont(new java.awt.Font("Verdana Pro", 0, 19)); // NOI18N
+        taskDescriptionArea.setRows(5);
+        taskDescriptionArea.setToolTipText("Task Descpription");
+        jScrollPane1.setViewportView(taskDescriptionArea);
 
-        jButton1.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jButton1.setText("jButton1");
+        insertButton.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        insertButton.setText("Upload");
+        insertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jTextField1.setText("jTextField1");
+        messageText.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jTextField2.setText("jTextField2");
+        taskNameField.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        taskNameField.setToolTipText("Task Name");
+        taskNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskNameFieldActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
-        jTextField3.setText("jTextField3");
+        jComboBox1.setFont(new java.awt.Font("Verdana Pro", 0, 18)); // NOI18N
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        deadlineField.setFont(new java.awt.Font("Verdana Pro", 0, 24)); // NOI18N
+        deadlineField.setToolTipText("YYYY-MM-DD");
+        deadlineField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deadlineFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(150, 150, 150)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(397, 397, 397)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(102, 102, 102)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(84, 84, 84)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(386, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(deadlineField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(taskNameField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 320, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(392, 392, 392))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(375, 375, 375))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(messageText, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(288, 288, 288))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(453, 453, 453))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(86, 86, 86)
+                .addGap(66, 66, 66)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(taskNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(84, 84, 84)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(126, 126, 126)
-                        .addComponent(jButton1))
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deadlineField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(29, 29, 29)
+                .addComponent(messageText, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         menuBar1.setForeground(new java.awt.Color(245, 219, 165));
@@ -241,7 +265,7 @@ public class UploadTasks extends javax.swing.JFrame {
 
         menuBar1.add(menu1);
 
-        jMenu2.setText("                                                                                                                                           ");
+        jMenu2.setText("                                                                                                                               ");
         jMenu2.setEnabled(false);
         menuBar1.add(jMenu2);
 
@@ -290,15 +314,24 @@ public class UploadTasks extends javax.swing.JFrame {
     }//GEN-LAST:event_upload_tasks1ActionPerformed
 
     private void manage_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasks1ActionPerformed
-        // TODO add your handling code here:
+        ManageTasks managetasks = new ManageTasks();
+
+        managetasks.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_manage_tasks1ActionPerformed
 
     private void register_workers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workers1ActionPerformed
-        // TODO add your handling code here:
+       Register register = new Register();
+        
+        this.dispose();
+        register.setVisible(true);
     }//GEN-LAST:event_register_workers1ActionPerformed
 
     private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
-        // TODO add your handling code here:
+        HelpAdmin helpadmin = new HelpAdmin();
+        
+        helpadmin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_help1ActionPerformed
 
     private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
@@ -308,6 +341,117 @@ public class UploadTasks extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logout1ActionPerformed
 
+    private void taskNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taskNameFieldActionPerformed
+
+    private void deadlineFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deadlineFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deadlineFieldActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+        
+      
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
+
+        String taskName = taskNameField.getText();
+        String taskDescription = taskDescriptionArea.getText();
+        String userIdString = jComboBox1.getSelectedItem().toString(); 
+        String deadline = deadlineField.getText();
+
+        // Checking if any field is empty
+        if (taskName.isEmpty() || taskDescription.isEmpty() || userIdString.isEmpty() || deadline.isEmpty()) {
+            messageText.setText("Please fill in all fields.");
+            return;
+        }
+
+        try {
+            Connection conn = DatabaseHelper.connect();
+
+            // Checking if the date format is correct
+            if (!isValidDateFormat(deadline)) {
+                messageText.setText("Incorrect date format. Please use YYYY-MM-DD.");
+                return;
+            }
+
+            // Extracting the ID part from the string "27 - Mikey Mouse"
+            String userId = userIdString.split(" - ")[0]; // Spliting the string by " - " and take the first part (the ID)
+
+            String sql = "INSERT INTO tasks (taskname, task_description, user_id, deadline_date) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, taskName);
+            statement.setString(2, taskDescription);
+            statement.setInt(3, Integer.parseInt(userId)); 
+            statement.setString(4, deadline);
+            statement.executeUpdate();
+            messageText.setText("Task inserted successfully!");
+        } catch (SQLException ex) {
+            messageText.setText("An error occurred while inserting the task.");
+            ex.printStackTrace();
+        } catch (NumberFormatException ex) {
+            messageText.setText("Invalid user ID format.");
+            ex.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_insertButtonActionPerformed
+
+    // Method to check if the date format is valid
+    private boolean isValidDateFormat(String date) {
+        return date.matches("\\d{4}-\\d{2}-\\d{2}");
+    }
+
+       
+     // Method to populate JComboBox with employee details
+    private void populateEmployeeComboBox() {
+        try (Connection conn = DatabaseHelper.connect()) {
+            String sql = "SELECT id, name, lastname FROM register";
+            try (PreparedStatement statement = conn.prepareStatement(sql);
+                 ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("lastname");
+
+                    // Add formatted string to JComboBox
+                    jComboBox1.addItem(id + " - " + name + " " + lastName);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -344,10 +488,12 @@ public class UploadTasks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField deadlineField;
     private javax.swing.JMenuItem employees1;
     private javax.swing.JMenuItem help1;
     private javax.swing.JMenuItem home;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton insertButton;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -362,15 +508,14 @@ public class UploadTasks extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JMenuItem logout1;
     private javax.swing.JMenuItem manage_tasks1;
     private javax.swing.JMenu menu1;
     private javax.swing.JMenuBar menuBar1;
+    private javax.swing.JLabel messageText;
     private javax.swing.JMenuItem register_workers1;
+    private javax.swing.JTextArea taskDescriptionArea;
+    private javax.swing.JTextField taskNameField;
     private javax.swing.JMenu title1;
     private javax.swing.JMenuItem upload_tasks1;
     // End of variables declaration//GEN-END:variables
