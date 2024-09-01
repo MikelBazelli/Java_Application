@@ -197,7 +197,7 @@ public class Employees extends javax.swing.JFrame {
 
     
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
-       AdminHomePage adminhomepage = new AdminHomePage();
+        AdminHomePage adminhomepage = new AdminHomePage();
 
         adminhomepage.setVisible(true);
         this.dispose();
@@ -218,7 +218,6 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_upload_tasks1ActionPerformed
 
     private void manage_tasks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasks1ActionPerformed
-
         ManageTasks managetasks = new ManageTasks();
         
         this.setVisible(false);
@@ -226,7 +225,6 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_manage_tasks1ActionPerformed
 
     private void register_workers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_workers1ActionPerformed
-              
         Register register = new Register();
         
         this.setVisible(false);
@@ -234,10 +232,7 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_register_workers1ActionPerformed
 
     private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
-
         HelpAdmin helpadmin = new HelpAdmin();
-        
-        this.setVisible(false);
         helpadmin.setVisible(true);
     }//GEN-LAST:event_help1ActionPerformed
 

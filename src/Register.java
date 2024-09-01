@@ -515,9 +515,7 @@ public class Register extends javax.swing.JFrame {
 
     private void help2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help2ActionPerformed
         HelpAdmin helpadmin = new HelpAdmin();
-        
         helpadmin.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_help2ActionPerformed
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed

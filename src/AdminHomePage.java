@@ -285,7 +285,10 @@ public class AdminHomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
-        // TODO add your handling code here:
+        HelpAdmin helpadmin = new HelpAdmin();
+        
+        helpadmin.setVisible(true);
+        
     }//GEN-LAST:event_help1ActionPerformed
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
@@ -338,10 +341,8 @@ public class AdminHomePage extends javax.swing.JFrame {
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
 
         HelpAdmin helpadmin = new HelpAdmin();
-        
-        this.setVisible(false);
         helpadmin.setVisible(true);
-        
+       
     }//GEN-LAST:event_helpActionPerformed
 
     private void manage_tasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_tasksActionPerformed

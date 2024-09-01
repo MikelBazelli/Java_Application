@@ -425,10 +425,10 @@ private void handleFileSelection(File selectedFile, String taskName) {
             }//GEN-LAST:event_tasksActionPerformed
 
     private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+            
             Help help = new Help();
-
             help.setVisible(true);
-            this.setVisible(false);
+            
     }//GEN-LAST:event_contactActionPerformed
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed

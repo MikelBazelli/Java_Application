@@ -412,11 +412,8 @@ public class ManageTasks extends javax.swing.JFrame {
     }//GEN-LAST:event_register_workers1ActionPerformed
 
     private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
-
         HelpAdmin helpadmin = new HelpAdmin();
-        
         helpadmin.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_help1ActionPerformed
 
     private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed

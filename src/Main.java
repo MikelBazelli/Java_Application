@@ -169,15 +169,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_login_btn1ActionPerformed
 
     private void contact_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contact_btnActionPerformed
-
-    Help help = new Help();
-
-    help.setVisible(true);
-    this.setVisible(false);
-
-
-
-
+    
+        Help help = new Help();
+        help.setVisible(true);
+        
     }//GEN-LAST:event_contact_btnActionPerformed
 
     /**
